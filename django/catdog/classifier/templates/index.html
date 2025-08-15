@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Dog vs Cat Classifier</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #eaf3ff, #ffeef1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 2.5rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 550px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+            background: #4CAF50;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background: #3f9a43;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐾 Dog vs Cat Classifier</h1>
+        <p>
+            Welcome to our AI-powered image classifier! <br>
+            This website helps you quickly detect whether an uploaded image contains a <strong>dog</strong> or a <strong>cat</strong>.
+            Simply click the button below to get started — the model will analyze the photo and give you the result in seconds.
+        </p>
+
+        <p>
+            This is built using a pre-trained <strong>ResNet-18</strong> model that has learned to distinguish between cats and dogs
+            by training on thousands of images.
+        </p>
+
+        <a class="btn" href="{% url 'classify' %}">
+            Try Now – Upload Image
+        </a>
+    </div>
+</body>
+</html>

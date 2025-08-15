@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog vs Cat Classifier</title>
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            font-family:'Segoe UI',Tahoma,sans-serif;
+            background:linear-gradient(135deg,#eaf3ff,#ffeef1);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+        .container{
+            background:#fff;
+            padding:2rem 3rem;
+            border-radius:16px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.15);
+            max-width:550px;
+            text-align:center;
+        }
+        h1{font-size:2.3rem;margin-bottom:1rem;}
+        p{color:#555;font-size:1rem;line-height:1.5;margin-bottom:1.5rem;}
+        .btn, button{
+            display:inline-block;
+            padding:0.8rem 1.5rem;
+            background:#4CAF50;
+            color:#fff;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:600;
+            text-decoration:none;
+            transition:0.2s;
+        }
+        .btn:hover, button:hover{
+            background:#3f9a43;
+            transform:translateY(-2px);
+        }
+
+        input[type=file]{
+            margin:1rem 0;
+        }
+        h2{margin-top:1rem}
+    </style>
+</head>
+<body>
+
+    <!-- Landing Page -->
+    {% if not request.path|slice:":9" == '/classify' %}
+    <div class="container">
+        <h1>🐾 Dog vs Cat Classifier</h1>
+        <p>Welcome! Upload an image and our AI model will tell you whether it contains a <strong>Dog</strong> or a <strong>Cat</strong>.</p>
+        <a class="btn" href="{% url 'classify' %}">Try Now — Upload Image</a>
+    </div>
+    {% else %}
+    <!-- Classification Page -->
+    <div class="container">
+        <h1>Upload an Image</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Classify</button>
+        </form>
+
+        {% if prediction %}
+            <h2>Prediction: {{ prediction }}</h2>
+            <img src="{{ image_url }}" alt="Uploaded Image" width="300">
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
