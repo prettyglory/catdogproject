@@ -1,15 +1,9 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "manage.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "buildCommand": "./vercel_build.sh"
-      }
-    }
-  ],
+  "name": "catdog",
+  "alias": "catdog.vercel.app",
+  "framework": "django",
+  "buildCommand": "./vercel_build.sh",
+  "outputDirectory": "staticfiles",
   "routes": [
     {
       "src": "/static/(.*)",
@@ -21,3 +15,5 @@
     }
   ]
 }
+
+
