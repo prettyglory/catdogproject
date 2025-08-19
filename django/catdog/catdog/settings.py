@@ -136,3 +136,5 @@ STATICFILES_DIRS = [
     BASE_DIR / 'classifier' / 'static',
 ]
 
+
+
